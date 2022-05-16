@@ -26,7 +26,7 @@ public class CourseController {
 	public ResponseEntity<?> insertCourse(@RequestBody Course course){
 		try {
 			courseService.addCourse(course);
-			return new ResponseEntity<>("Successfully added",HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		catch(Exception e) {
 			Message message = new Message(e.getMessage());
@@ -36,14 +36,15 @@ public class CourseController {
 	}
 	
 	@DeleteMapping("course/deletecourse/{id}")
-	public ResponseEntity<String> deleteCourse(@PathVariable("id") Integer id) {
+	public ResponseEntity<?> deleteCourse(@PathVariable("id") Integer id) {
 		try {
 		courseService.removeCourse(id);
-		return new ResponseEntity<String>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
-			return new ResponseEntity<String>("Unable to delete course",HttpStatus.BAD_REQUEST);
+			Message message = new Message(e.getMessage());
+			return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
 		}
 	}
 	
