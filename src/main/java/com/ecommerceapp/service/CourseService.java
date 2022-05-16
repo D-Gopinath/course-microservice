@@ -18,6 +18,22 @@ public class CourseService {
 	@Autowired
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
+	public void addCourse(Course course) throws Exception {
+		try {
+			courseRepository.save(course);
+		}
+		catch(Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	public void removeCourse(Integer id) throws Exception {
+		try {
+			courseRepository.deleteById(id);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
 	public List<Course> showCourses() throws Exception{
 		try {
 			List<Course> courses = courseRepository.viewAllCourse();
