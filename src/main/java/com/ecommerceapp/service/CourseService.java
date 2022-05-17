@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ecommerceapp.dao.CourseRepository;
 import com.ecommerceapp.model.Course;
 import com.ecommerceapp.model.CourseMenu;
+import com.ecommerceapp.model.UserCourse;
 
 @RestController
 public class CourseService {
@@ -64,16 +65,16 @@ public class CourseService {
 		}
 	}
 	
-//	public void enroll(UserCourse uc) throws Exception{
-//		
-//		try{
-//			courseRepository.save(uc);
-//		}
-//		catch(Exception e) {
-//			throw new Exception(e.getMessage());
-//		}
-//		
-//	}
+	public void enroll(UserCourse uc) throws Exception{
+		
+		try{
+			courseRepository.save(uc);
+		}
+		catch(Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		
+	}
 	
 	public List<Course> enrolledCourses(Integer userId)throws Exception{
 		try {

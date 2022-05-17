@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ecommerceapp.model.Course;
 import com.ecommerceapp.model.CourseMenu;
+import com.ecommerceapp.model.UserCourse;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course,Integer> {
@@ -32,4 +33,6 @@ public interface CourseRepository extends JpaRepository<Course,Integer> {
 	 @Modifying
 	 @Query("delete from com.ecommerceapp.model.Course c where c.id=:id")
 	 void deleteById(@Param("id") Integer id);
+	 
+	 UserCourse save(UserCourse userCourse);
 }

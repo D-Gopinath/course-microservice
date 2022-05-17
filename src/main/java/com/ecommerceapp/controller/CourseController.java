@@ -1,5 +1,6 @@
 package com.ecommerceapp.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,36 +81,36 @@ public class CourseController {
 		}
 	}
 	
-//	@GetMapping("course/enroll/{cid}/{uid}")
-//	public ResponseEntity<?> enrollCourse(@PathVariable("cid") Integer cid, @PathVariable("uid") Integer uid){
-//		
-//		UserCourse uc = new UserCourse();
-//		uc.setUserId(uid);
-//		uc.setCourseId(cid);
-//		uc.setDate(LocalDate.now());
-//		
-//		try {
-//			courseService.enroll(uc);
-//			return new ResponseEntity<>(HttpStatus.OK);
-//		}
-//		catch(Exception e) {
-//			Message message = new Message(e.getMessage());
-//			return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
-//		}
-//		
-//	}
+	@GetMapping("course/enroll/{cid}/{uid}")
+	public ResponseEntity<?> enrollCourse(@PathVariable("cid") Integer cid, @PathVariable("uid") Integer uid){
+		
+		UserCourse uc = new UserCourse();
+		uc.setUserId(uid);
+		uc.setCourseId(cid);
+		uc.setDate(LocalDate.now());
+		
+		try {
+			courseService.enroll(uc);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		catch(Exception e) {
+			Message message = new Message(e.getMessage());
+			return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
+		}
+		
+	}
 	
-//	@GetMapping("courses/enrolledlist/{uid}")
-//	public ResponseEntity<?> viewEnrolledCourses(@PathVariable("uid") Integer uid){
-//		try {
-//			List<Course> eCourses = courseService.enrolledCourses(uid);
-//			return new ResponseEntity<>(eCourses,HttpStatus.OK);
-//		}
-//		catch(Exception e){
-//			Message message = new Message(e.getMessage());
-//			return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
-//		}
-//	}
+	@GetMapping("courses/enrolledlist/{uid}")
+	public ResponseEntity<?> viewEnrolledCourses(@PathVariable("uid") Integer uid){
+		try {
+			List<Course> eCourses = courseService.enrolledCourses(uid);
+			return new ResponseEntity<>(eCourses,HttpStatus.OK);
+		}
+		catch(Exception e){
+			Message message = new Message(e.getMessage());
+			return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
+		}
+	}
 	
 	@GetMapping("courses/viewcourse/{cid}")
 	public ResponseEntity<?> viewCourse(@PathVariable("cid") Integer cid){
